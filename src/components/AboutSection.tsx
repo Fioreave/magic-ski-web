@@ -29,6 +29,14 @@ const AboutSection = () => {
                 confianza y habilidades en la nieve de forma segura.
               </p>
 
+              <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-[#00B6E5]">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">¡Conoce a nuestra mascota!</h3>
+                <p className="text-gray-700">
+                  Los niños aprenden acompañados de nuestra querida mascota, que hace que cada clase 
+                  sea una aventura mágica llena de diversión y aprendizaje.
+                </p>
+              </div>
+
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
                 <div className="text-center">
@@ -61,8 +69,8 @@ const AboutSection = () => {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
                 <img
-                  src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Niños aprendiendo a esquiar"
+                  src="/lovable-uploads/11c99f20-4cb2-4633-bc35-3a25fbb22b48.png"
+                  alt="Niños de Magic Ski aprendiendo en Grau Roig"
                   className="w-full h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00B6E5]/20 to-transparent"></div>

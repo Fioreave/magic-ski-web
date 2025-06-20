@@ -8,33 +8,33 @@ const GallerySection = () => {
   const galleryItems = [
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Niños esquiando en pistas'
-    },
-    {
-      type: 'video',
-      src: 'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Video de clases Magic Ski'
+      src: '/lovable-uploads/52e54cb7-dd28-4564-bd4a-556ef8ffd9b7.png',
+      alt: 'Niños esquiando en las pistas de Grau Roig con paisaje montañoso'
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Instructores con niños'
+      src: '/lovable-uploads/11c99f20-4cb2-4633-bc35-3a25fbb22b48.png',
+      alt: 'Grupo de niños Magic Ski en las pistas'
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Paisaje nevado Grau Roig'
+      src: '/lovable-uploads/3cf54eba-ca73-45cf-87e6-5eeed950cf9d.png',
+      alt: 'Niños aprendiendo técnicas de esquí en Magic Ski'
     },
     {
       type: 'image',
-      src: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Grupo de niños aprendiendo'
+      src: '/lovable-uploads/602c2a69-9850-438f-a0de-0996cc97a681.png',
+      alt: 'Grupo completo de estudiantes Magic Ski con instructores'
     },
     {
-      type: 'video',
-      src: 'https://images.unsplash.com/photo-1458668383970-8ddd3927deed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      alt: 'Testimonial de padres'
+      type: 'image',
+      src: '/lovable-uploads/00570c02-3d0b-4168-915e-88425728d4aa.png',
+      alt: 'Niños con la mascota de Magic Ski y instructor'
+    },
+    {
+      type: 'image',
+      src: '/lovable-uploads/418ed443-bfaf-4441-b1e6-55e76f78bb7f.png',
+      alt: 'Ceremonia de graduación con diplomas Magic Ski'
     }
   ];
 
@@ -48,7 +48,7 @@ const GallerySection = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Revive la emoción y alegría de nuestras clases a través de estas 
-              imágenes y videos de nuestros pequeños esquiadores.
+              imágenes reales de nuestros pequeños esquiadores en acción.
             </p>
             <div className="w-24 h-1 bg-[#00B6E5] mx-auto rounded-full mt-6"></div>
           </div>
@@ -74,15 +74,6 @@ const GallerySection = () => {
                     <p className="text-white font-semibold text-sm">{item.alt}</p>
                   </div>
                 </div>
-
-                {/* Video play button */}
-                {item.type === 'video' && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-[#00B6E5] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-8 h-8 text-white ml-1" />
-                    </div>
-                  </div>
-                )}
 
                 {/* Hover effect border */}
                 <div className="absolute inset-0 border-4 border-[#00B6E5] rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></div>
@@ -112,6 +103,39 @@ const GallerySection = () => {
               </div>
             </div>
           )}
+
+          {/* Special Mascot Section */}
+          <div className="mt-16 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                  ¡Conoce a nuestra <span className="text-[#00B6E5]">mascota</span>!
+                </h3>
+                <p className="text-lg text-gray-700 mb-6">
+                  Nuestra querida mascota acompaña a los niños en cada aventura, 
+                  creando un ambiente mágico donde el aprendizaje se convierte en diversión pura. 
+                  Los pequeños esquiadores crean vínculos especiales que hacen de cada clase una experiencia inolvidable.
+                </p>
+                <div className="flex items-center space-x-4 text-sm text-gray-600">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-[#00B6E5] rounded-full"></div>
+                    <span>Entretenimiento garantizado</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-[#00B6E5] rounded-full"></div>
+                    <span>Ambiente familiar</span>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src="/lovable-uploads/f4db08a6-a798-46de-9f3b-9f5654451700.png"
+                  alt="Mascota de Magic Ski con niños pequeños"
+                  className="w-full h-64 object-cover rounded-xl shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
 
           {/* CTA Section */}
           <div className="mt-16 text-center">
