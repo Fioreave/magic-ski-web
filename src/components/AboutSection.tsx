@@ -18,24 +18,30 @@ const AboutSection = () => {
             {/* Content */}
             <div className="space-y-6">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Magic Ski Grau Roig es la escuela de esquí infantil más prestigiosa de Grandvalira, 
-                diseñada especialmente para convertir a los más pequeños en verdaderos esquiadores 
-                mientras se divierten como nunca.
+                El Club Màgic Ski es un club lúdico de esquí donde se enseña a los alumnos a 
+                disfrutar de la montaña con respeto hacia la naturaleza y hacia las personas. 
+                Los valores como el respeto, la cooperación y el trabajo en equipo son pilares 
+                fundamentales de nuestra enseñanza.
               </p>
               
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Nuestros instructores certificados utilizan métodos de enseñanza innovadores y 
-                divertidos, adaptados a cada edad y nivel, garantizando que cada niño desarrolle 
-                confianza y habilidades en la nieve de forma segura.
-              </p>
-
               <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-[#00B6E5]">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">¡Conoce a nuestra mascota!</h3>
-                <p className="text-gray-700">
-                  Los niños aprenden acompañados de nuestra querida mascota, que hace que cada clase 
-                  sea una aventura mágica llena de diversión y aprendizaje.
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Nuestra filosofía</h3>
+                <p className="text-gray-700 font-medium">
+                  "Nos divertimos aprendiendo y aprendemos divirtiéndonos"
                 </p>
               </div>
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                El Club Màgic Ski ofrece clases de esquí para niños y adolescentes durante toda 
+                la temporada. El punto base del club es la zona de Planells, donde se encuentra 
+                el Jardín de Nieve, instalación idónea para los más pequeños que apenas empiezan 
+                a esquiar.
+              </p>
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Los más grandes, junto con su monitor que le acompañará toda la temporada, 
+                podrán descubrir la estación aprendiendo y perfeccionando la técnica.
+              </p>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
@@ -83,8 +89,8 @@ const AboutSection = () => {
                     <Award className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900">Certificados</div>
-                    <div className="text-sm text-gray-600">Instructores oficiales</div>
+                    <div className="font-bold text-gray-900">Jardín de Nieve</div>
+                    <div className="text-sm text-gray-600">Zona Planells</div>
                   </div>
                 </div>
               </div>
