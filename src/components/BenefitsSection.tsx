@@ -1,90 +1,99 @@
 
 import React from 'react';
-import { Shield, Smile, TrendingUp, Users, Clock, Heart } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Shield, Smile, Trophy, Users, Clock, Heart } from 'lucide-react';
 
 const BenefitsSection = () => {
-  const { t } = useLanguage();
-
   const benefits = [
     {
       icon: Shield,
-      title: t('max_security'),
-      description: t('max_security_desc')
+      title: "Máxima Seguridad",
+      description: "Protocolos de seguridad certificados y equipamiento de última generación para cada niño."
     },
     {
       icon: Smile,
-      title: t('guaranteed_fun'),
-      description: t('guaranteed_fun_desc')
+      title: "Diversión Garantizada",
+      description: "Métodos de enseñanza lúdicos que convierten cada clase en una aventura mágica."
     },
     {
-      icon: TrendingUp,
-      title: t('fast_progress'),
-      description: t('fast_progress_desc')
+      icon: Trophy,
+      title: "Progreso Rápido",
+      description: "Técnicas probadas que permiten a los niños avanzar de forma natural y efectiva."
     },
     {
       icon: Users,
-      title: t('small_groups'),
-      description: t('small_groups_desc')
+      title: "Grupos Reducidos",
+      description: "Máximo 6 niños por instructor para una atención personalizada y de calidad."
     },
     {
       icon: Clock,
-      title: t('flexible_hours'),
-      description: t('flexible_hours_desc')
+      title: "Horarios Flexibles",
+      description: "Clases adaptadas a las necesidades de cada familia con opciones de mañana y tarde."
     },
     {
       icon: Heart,
-      title: t('love_for_skiing'),
-      description: t('love_for_skiing_desc')
+      title: "Amor por el Esquí",
+      description: "Creamos una conexión emocional positiva con la montaña y los deportes de invierno."
     }
   ];
 
   return (
-    <section id="benefits" className="scroll-animate opacity-0 translate-y-8 py-20 bg-gradient-to-br from-blue-50 to-cyan-50">
+    <section id="benefits" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {t('benefits_title')}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            {t('benefits_subtitle')}
-          </p>
-          <div className="w-24 h-1 bg-[#00B6E5] mx-auto mt-8 rounded-full"></div>
-        </div>
+        <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-700">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              ¿Por qué elegir <span className="text-[#00B6E5]">Magic Ski</span>?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Descubre todos los beneficios que hacen de nuestra escuela la mejor opción 
+              para la aventura invernal de tus hijos.
+            </p>
+            <div className="w-24 h-1 bg-[#00B6E5] mx-auto rounded-full mt-6"></div>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon;
-            return (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
               <div
-                key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+                key={benefit.title}
+                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-16 h-16 bg-[#00B6E5] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <IconComponent className="w-8 h-8 text-white" />
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#00B6E5] to-[#0090B8] rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <benefit.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#00B6E5] transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#00B6E5] transition-colors duration-300">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {benefit.description}
-                </p>
+                
+                {/* Animated border */}
+                <div className="w-0 h-1 bg-gradient-to-r from-[#00B6E5] to-[#0090B8] rounded-full group-hover:w-full transition-all duration-500"></div>
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
 
-        <div className="text-center bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">¿Listo para la aventura?</h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Únete a miles de familias que han confiado en Magic Ski para crear recuerdos inolvidables en la nieve.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center bg-[#00B6E5] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0090B8] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            {t('reserve')}
-          </a>
+          {/* Call to action */}
+          <div className="text-center mt-16">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-[#00B6E5] max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                ¿Listo para la aventura?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Únete a miles de familias que han confiado en Magic Ski para crear 
+                recuerdos inolvidables en la nieve.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center bg-[#00B6E5] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#0090B8] transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Reservar ahora
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

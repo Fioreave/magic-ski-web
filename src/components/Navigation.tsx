@@ -1,13 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
-import LanguageSelector from './LanguageSelector';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +16,12 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: t('nav_inicio'), href: '#hero' },
-    { name: t('nav_gallery'), href: '#gallery' },
-    { name: t('nav_testimonials'), href: '#testimonials' },
-    { name: t('nav_contact'), href: '#contact' }
+    { name: 'Inicio', href: '#hero' },
+    { name: '¿Qué es?', href: '#about' },
+    { name: 'Beneficios', href: '#benefits' },
+    { name: 'Galería', href: '#gallery' },
+    { name: 'Testimonios', href: '#testimonials' },
+    { name: 'Contacto', href: '#contact' }
   ];
 
   return (
@@ -31,18 +30,22 @@ const Navigation = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo only */}
+          {/* Logo */}
           <div className="flex-shrink-0">
-            <img 
-              src="/lovable-uploads/8197088e-2127-4b44-a002-7de44bb25638.png" 
-              alt="Grandvalira" 
-              className="h-10 w-auto"
-            />
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-[#00B6E5] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">G</span>
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-lg">Grandvalira</div>
+                <div className="text-xs text-gray-600">Magic Ski</div>
+              </div>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="flex items-baseline space-x-4">
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -53,7 +56,6 @@ const Navigation = () => {
                 </a>
               ))}
             </div>
-            <LanguageSelector />
           </div>
 
           {/* CTA Button */}
@@ -62,7 +64,7 @@ const Navigation = () => {
               href="#contact"
               className="bg-[#00B6E5] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#0090B8] transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              {t('reserve')}
+              Iniciar compra
             </a>
           </div>
 
@@ -92,15 +94,12 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <div className="px-3 py-2">
-              <LanguageSelector />
-            </div>
             <a
               href="#contact"
               className="bg-[#00B6E5] text-white block px-3 py-2 rounded-md text-base font-medium text-center mt-4"
               onClick={() => setIsOpen(false)}
             >
-              {t('reserve')}
+              Iniciar compra
             </a>
           </div>
         </div>

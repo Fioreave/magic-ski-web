@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import { LanguageProvider } from '../contexts/LanguageContext';
 import Hero from '../components/Hero';
 import Navigation from '../components/Navigation';
 import AboutSection from '../components/AboutSection';
@@ -40,18 +39,16 @@ const Index = () => {
   }, []);
 
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <Hero />
-        <AboutSection />
-        <BenefitsSection />
-        <GallerySection />
-        <TestimonialsSection />
-        <CallToActionSection />
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      <Hero />
+      <AboutSection />
+      <BenefitsSection />
+      <GallerySection />
+      <TestimonialsSection />
+      <CallToActionSection />
+      <Footer />
+    </div>
   );
 };
 
