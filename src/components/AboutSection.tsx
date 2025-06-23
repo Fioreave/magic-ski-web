@@ -1,15 +1,18 @@
 
 import React from 'react';
 import { Award, Heart, Users } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-700">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-              ¿Qué es <span className="text-[#00B6E5]">Magic Ski</span>?
+              {t.about.title}
             </h2>
             <div className="w-24 h-1 bg-[#00B6E5] mx-auto rounded-full"></div>
           </div>
@@ -18,22 +21,17 @@ const AboutSection = () => {
             {/* Content */}
             <div className="space-y-6">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Magic Ski Grau Roig es la escuela de esquí infantil más prestigiosa de Grandvalira, 
-                diseñada especialmente para convertir a los más pequeños en verdaderos esquiadores 
-                mientras se divierten como nunca.
+                {t.about.description1}
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed">
-                Nuestros instructores certificados utilizan métodos de enseñanza innovadores y 
-                divertidos, adaptados a cada edad y nivel, garantizando que cada niño desarrolle 
-                confianza y habilidades en la nieve de forma segura.
+                {t.about.description2}
               </p>
 
               <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-[#00B6E5]">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">¡Conoce a nuestra mascota!</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{t.about.mascotTitle}</h3>
                 <p className="text-gray-700">
-                  Los niños aprenden acompañados de nuestra querida mascota, que hace que cada clase 
-                  sea una aventura mágica llena de diversión y aprendizaje.
+                  {t.about.mascotDescription}
                 </p>
               </div>
 
@@ -44,7 +42,7 @@ const AboutSection = () => {
                     <Award className="w-8 h-8 text-[#00B6E5]" />
                   </div>
                   <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-sm text-gray-600">Años experiencia</div>
+                  <div className="text-sm text-gray-600">{t.about.yearsExperience}</div>
                 </div>
                 
                 <div className="text-center">
@@ -52,7 +50,7 @@ const AboutSection = () => {
                     <Users className="w-8 h-8 text-[#00B6E5]" />
                   </div>
                   <div className="text-2xl font-bold text-gray-900">5000+</div>
-                  <div className="text-sm text-gray-600">Niños felices</div>
+                  <div className="text-sm text-gray-600">{t.about.happyKids}</div>
                 </div>
                 
                 <div className="text-center">
@@ -60,7 +58,7 @@ const AboutSection = () => {
                     <Heart className="w-8 h-8 text-[#00B6E5]" />
                   </div>
                   <div className="text-2xl font-bold text-gray-900">98%</div>
-                  <div className="text-sm text-gray-600">Satisfacción</div>
+                  <div className="text-sm text-gray-600">{t.about.satisfaction}</div>
                 </div>
               </div>
             </div>
@@ -83,8 +81,8 @@ const AboutSection = () => {
                     <Award className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900">Certificados</div>
-                    <div className="text-sm text-gray-600">Instructores oficiales</div>
+                    <div className="font-bold text-gray-900">{t.about.certified}</div>
+                    <div className="text-sm text-gray-600">{t.about.officialInstructors}</div>
                   </div>
                 </div>
               </div>

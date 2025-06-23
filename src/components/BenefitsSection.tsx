@@ -1,38 +1,41 @@
 
 import React from 'react';
 import { Shield, Smile, Trophy, Users, Clock, Heart } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BenefitsSection = () => {
+  const { t } = useLanguage();
+
   const benefits = [
     {
       icon: Shield,
-      title: "Máxima Seguridad",
-      description: "Protocolos de seguridad certificados y equipamiento de última generación para cada niño."
+      title: t.benefits.maxSafety,
+      description: t.benefits.maxSafetyDesc
     },
     {
       icon: Smile,
-      title: "Diversión Garantizada",
-      description: "Métodos de enseñanza lúdicos que convierten cada clase en una aventura mágica."
+      title: t.benefits.guaranteedFun,
+      description: t.benefits.guaranteedFunDesc
     },
     {
       icon: Trophy,
-      title: "Progreso Rápido",
-      description: "Técnicas probadas que permiten a los niños avanzar de forma natural y efectiva."
+      title: t.benefits.fastProgress,
+      description: t.benefits.fastProgressDesc
     },
     {
       icon: Users,
-      title: "Grupos Reducidos",
-      description: "Máximo 6 niños por instructor para una atención personalizada y de calidad."
+      title: t.benefits.smallGroups,
+      description: t.benefits.smallGroupsDesc
     },
     {
       icon: Clock,
-      title: "Horarios Flexibles",
-      description: "Clases adaptadas a las necesidades de cada familia con opciones de mañana y tarde."
+      title: t.benefits.flexibleSchedules,
+      description: t.benefits.flexibleSchedulesDesc
     },
     {
       icon: Heart,
-      title: "Amor por el Esquí",
-      description: "Creamos una conexión emocional positiva con la montaña y los deportes de invierno."
+      title: t.benefits.loveForSkiing,
+      description: t.benefits.loveForSkiingDesc
     }
   ];
 
@@ -42,11 +45,10 @@ const BenefitsSection = () => {
         <div className="scroll-animate opacity-0 translate-y-8 transition-all duration-700">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-              ¿Por qué elegir <span className="text-[#00B6E5]">Magic Ski</span>?
+              {t.benefits.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Descubre todos los beneficios que hacen de nuestra escuela la mejor opción 
-              para la aventura invernal de tus hijos.
+              {t.benefits.description}
             </p>
             <div className="w-24 h-1 bg-[#00B6E5] mx-auto rounded-full mt-6"></div>
           </div>
@@ -80,17 +82,16 @@ const BenefitsSection = () => {
           <div className="text-center mt-16">
             <div className="bg-white rounded-2xl p-8 shadow-xl border-l-4 border-[#00B6E5] max-w-2xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                ¿Listo para la aventura?
+                {t.benefits.readyForAdventure}
               </h3>
               <p className="text-gray-600 mb-6">
-                Únete a miles de familias que han confiado en Magic Ski para crear 
-                recuerdos inolvidables en la nieve.
+                {t.benefits.readyForAdventureDesc}
               </p>
               <a
                 href="#contact"
                 className="inline-flex items-center bg-[#00B6E5] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#0090B8] transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                Reservar ahora
+                {t.benefits.reserveNow}
               </a>
             </div>
           </div>

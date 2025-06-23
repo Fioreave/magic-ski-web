@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -33,15 +36,14 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Magic Ski
+            {t.hero.title}
             <span className="block text-[#00B6E5] text-4xl sm:text-5xl lg:text-6xl mt-2">
-              Grau Roig
+              {t.hero.subtitle}
             </span>
           </h1>
           
           <p className="text-xl sm:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-            La escuela de esquí más mágica de los Pirineos. Donde los pequeños aventureros 
-            descubren la pasión por la nieve y el esquí.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -49,13 +51,13 @@ const Hero = () => {
               href="#contact"
               className="group bg-[#00B6E5] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#0090B8] transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 flex items-center space-x-2"
             >
-              <span>Iniciar compra</span>
+              <span>{t.hero.reserve}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
             
             <button className="group text-white border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 flex items-center space-x-2">
               <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-              <span>Ver video</span>
+              <span>{t.hero.watchVideo}</span>
             </button>
           </div>
         </div>
