@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Ski Club</title>
+    <link rel="icon" href="/lovable-uploads/0db1534e-7f5c-4866-8251-5475747e3d31.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00B6E5;
+        }
+
+        .btn-primary {
+            background: #00B6E5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #0090B8;
+            transform: translateY(-2px);
+        }
+
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            min-width: 80px;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-dropdown button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .language-dropdown button:hover {
+            background: #f5f5f5;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/lovable-uploads/cf7b08c9-77e4-4773-814c-c71efbf755f0.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .snow-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .snow-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .subtitle {
+            color: #00B6E5;
+            font-size: 3rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #333;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .scroll-dot {
+            width: 4px;
+            height: 12px;
+            background: white;
+            border-radius: 2px;
+            margin-top: 8px;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 0; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(8px); }
+            100% { opacity: 0; transform: translateY(16px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: #00B6E5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: #f8f9fa;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #00B6E5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #00B6E5, #0090B8);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: #00B6E5;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #00B6E5;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #00B6E5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/lovable-uploads/4d38dcaa-9135-4e6a-ba47-2003e6f39d19.png" alt="Magic Ski Club">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#gallery">Galería</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+                <li>
+                    <div class="language-selector">
+                        <button class="language-btn" onclick="toggleLanguageDropdown()">
+                            🌐 <span id="current-lang">ES</span>
+                        </button>
+                        <div class="language-dropdown" id="language-dropdown">
+                            <button onclick="changeLanguage('es')">ES</button>
+                            <button onclick="changeLanguage('ca')">CA</button>
+                            <button onclick="changeLanguage('en')">EN</button>
+                            <button onclick="changeLanguage('fr')">FR</button>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#contact" class="btn-primary">Reservar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="snow-particles" id="snow-particles"></div>
+        <div class="hero-content fade-in">
+            <h1>
+                <span id="hero-title">Descubre la Magia</span>
+                <span class="subtitle" id="hero-subtitle">del Esquí</span>
+            </h1>
+            <p id="hero-description">Aprende a esquiar en un ambiente divertido y seguro con instructores profesionales en las mejores pistas de la montaña.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    <span id="hero-reserve">Reservar Clases</span> →
+                </a>
+                <a href="#about" class="btn-secondary">
+                    ▶ <span id="hero-video">Ver Video</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title" id="about-title">Sobre Nosotros</h2>
+                <p class="section-subtitle" id="about-subtitle">Conoce más sobre Magic Ski Club</p>
+            </div>
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p id="about-text-1">El Club Màgic Ski es un club lúdico de esquí donde se enseña a los alumnos a disfrutar de la montaña con respeto hacia la naturaleza y hacia las personas. Los valores como el respeto, la cooperación y el trabajo en equipo son pilares fundamentales de nuestra enseñanza.</p>
+                    <br>
+                    <p id="about-text-2">El Club Màgic Ski ofrece clases de esquí para niños y adolescentes durante toda la temporada. El punto base del club es la zona de Planells, donde se encuentra el Jardín de Nieve, instalación idónea para los más pequeños que apenas empiezan a esquiar. Los más grandes, junto con su monitor que le acompañará toda la temporada, podrán descubrir la estación aprendiendo y perfeccionando la técnica.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/lovable-uploads/418ed443-bfaf-4441-b1e6-55e76f78bb7f.png" alt="Esquiadores en la montaña">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title" id="benefits-title">¿Por qué Elegirnos?</h2>
+                <p class="section-subtitle" id="benefits-subtitle">Descubre las ventajas de aprender con nosotros</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">👥</div>
+                    <h3 id="benefit-1-title">Instructores Profesionales</h3>
+                    <p id="benefit-1-desc">Nuestros instructores certificados tienen años de experiencia enseñando esquí a estudiantes de todas las edades y niveles.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🏔️</div>
+                    <h3 id="benefit-2-title">Pistas Perfectas</h3>
+                    <p id="benefit-2-desc">Acceso a las mejores pistas de esquí con condiciones óptimas para el aprendizaje y la diversión.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3 id="benefit-3-title">Seguridad Garantizada</h3>
+                    <p id="benefit-3-desc">Priorizamos la seguridad con equipos de alta calidad y protocolos estrictos de seguridad en todas nuestras actividades.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 id="benefit-4-title">Grupos Reducidos</h3>
+                    <p id="benefit-4-desc">Clases en grupos pequeños para una atención personalizada y un aprendizaje más efectivo.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">⭐</div>
+                    <h3 id="benefit-5-title">Experiencia Completa</h3>
+                    <p id="benefit-5-desc">No solo enseñamos técnica, sino que creamos experiencias memorables en la montaña.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">💰</div>
+                    <h3 id="benefit-6-title">Precios Competitivos</h3>
+                    <p id="benefit-6-desc">Ofrecemos paquetes flexibles y precios accesibles para que todos puedan disfrutar del esquí.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title" id="gallery-title">Galería</h2>
+                <p class="section-subtitle" id="gallery-subtitle">Momentos memorables en la montaña</p>
+            </div>
+            <div class="gallery-grid fade-in">
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/00570c02-3d0b-4168-915e-88425728d4aa.png" alt="Esquiadores en acción">
+                </div>
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/11c99f20-4cb2-4633-bc35-3a25fbb22b48.png" alt="Niños aprendiendo a esquiar">
+                </div>
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/3cf54eba-ca73-45cf-87e6-5eeed950cf9d.png" alt="Paisaje montañoso">
+                </div>
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/52e54cb7-dd28-4564-bd4a-556ef8ffd9b7.png" alt="Grupo de esquiadores">
+                </div>
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/602c2a69-9850-438f-a0de-0996cc97a681.png" alt="Instructor enseñando">
+                </div>
+                <div class="gallery-item">
+                    <img src="/lovable-uploads/f4db08a6-a798-46de-9f3b-9f5654451700.png" alt="Vista panorámica">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title" id="testimonials-title">Testimonios</h2>
+                <p class="section-subtitle" id="testimonials-subtitle">Lo que dicen nuestros estudiantes</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">M</div>
+                    <p class="testimonial-text" id="testimonial-1-text">"¡Increíble experiencia! Los instructores son muy pacientes y profesionales. Mi hijo aprendió a esquiar en solo una semana."</p>
+                    <p class="testimonial-author" id="testimonial-1-author">- María González</p>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">C</div>
+                    <p class="testimonial-text" id="testimonial-2-text">"Las clases son súper divertidas y seguras. Definitivamente recomiendo Magic Ski Club a todas las familias."</p>
+                    <p class="testimonial-author" id="testimonial-2-author">- Carlos Martín</p>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-avatar">A</div>
+                    <p class="testimonial-text" id="testimonial-3-text">"Perfecta organización y ambiente familiar. Mis hijos están emocionados por volver la próxima temporada."</p>
+                    <p class="testimonial-author" id="testimonial-3-author">- Ana Rodríguez</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container fade-in">
+            <h2 id="cta-title">¡Reserva tu Clase Hoy!</h2>
+            <p id="cta-description">No pierdas la oportunidad de vivir una experiencia única en la montaña. Contacta con nosotros y comienza tu aventura en el esquí.</p>
+            <a href="mailto:info@magicski.com" class="btn-white" id="cta-button">Contactar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="/lovable-uploads/4d38dcaa-9135-4e6a-ba47-2003e6f39d19.png" alt="Magic Ski Club">
+            </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footer-contact-title">Contacto</h3>
+                    <p>Email: info@magicski.com</p>
+                    <p>Teléfono: +376 123 456</p>
+                    <p>Dirección: Grandvalira, Andorra</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-schedule-title">Horarios</h3>
+                    <p id="footer-schedule-weekdays">Lunes a Viernes: 9:00 - 17:00</p>
+                    <p id="footer-schedule-weekends">Fines de Semana: 8:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-social-title">Síguenos</h3>
+                    <p><a href="#">Facebook</a></p>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">YouTube</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="footer-copyright">&copy; 2024 Magic Ski Club. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations object
+        const translations = {
+            es: {
+                'hero-title': 'Descubre la Magia',
+                'hero-subtitle': 'del Esquí',
+                'hero-description': 'Aprende a esquiar en un ambiente divertido y seguro con instructores profesionales en las mejores pistas de la montaña.',
+                'hero-reserve': 'Reservar Clases',
+                'hero-video': 'Ver Video',
+                'about-title': 'Sobre Nosotros',
+                'about-subtitle': 'Conoce más sobre Magic Ski Club',
+                'about-text-1': 'El Club Màgic Ski es un club lúdico de esquí donde se enseña a los alumnos a disfrutar de la montaña con respeto hacia la naturaleza y hacia las personas. Los valores como el respeto, la cooperación y el trabajo en equipo son pilares fundamentales de nuestra enseñanza.',
+                'about-text-2': 'El Club Màgic Ski ofrece clases de esquí para niños y adolescentes durante toda la temporada. El punto base del club es la zona de Planells, donde se encuentra el Jardín de Nieve, instalación idónea para los más pequeños que apenas empiezan a esquiar. Los más grandes, junto con su monitor que le acompañará toda la temporada, podrán descubrir la estación aprendiendo y perfeccionando la técnica.',
+                'benefits-title': '¿Por qué Elegirnos?',
+                'benefits-subtitle': 'Descubre las ventajas de aprender con nosotros',
+                'benefit-1-title': 'Instructores Profesionales',
+                'benefit-1-desc': 'Nuestros instructores certificados tienen años de experiencia enseñando esquí a estudiantes de todas las edades y niveles.',
+                'benefit-2-title': 'Pistas Perfectas',
+                'benefit-2-desc': 'Acceso a las mejores pistas de esquí con condiciones óptimas para el aprendizaje y la diversión.',
+                'benefit-3-title': 'Seguridad Garantizada',
+                'benefit-3-desc': 'Priorizamos la seguridad con equipos de alta calidad y protocolos estrictos de seguridad en todas nuestras actividades.',
+                'benefit-4-title': 'Grupos Reducidos',
+                'benefit-4-desc': 'Clases en grupos pequeños para una atención personalizada y un aprendizaje más efectivo.',
+                'benefit-5-title': 'Experiencia Completa',
+                'benefit-5-desc': 'No solo enseñamos técnica, sino que creamos experiencias memorables en la montaña.',
+                'benefit-6-title': 'Precios Competitivos',
+                'benefit-6-desc': 'Ofrecemos paquetes flexibles y precios accesibles para que todos puedan disfrutar del esquí.',
+                'gallery-title': 'Galería',
+                'gallery-subtitle': 'Momentos memorables en la montaña',
+                'testimonials-title': 'Testimonios',
+                'testimonials-subtitle': 'Lo que dicen nuestros estudiantes',
+                'testimonial-1-text': '"¡Increíble experiencia! Los instructores son muy pacientes y profesionales. Mi hijo aprendió a esquiar en solo una semana."',
+                'testimonial-1-author': '- María González',
+                'testimonial-2-text': '"Las clases son súper divertidas y seguras. Definitivamente recomiendo Magic Ski Club a todas las familias."',
+                'testimonial-2-author': '- Carlos Martín',
+                'testimonial-3-text': '"Perfecta organización y ambiente familiar. Mis hijos están emocionados por volver la próxima temporada."',
+                'testimonial-3-author': '- Ana Rodríguez',
+                'cta-title': '¡Reserva tu Clase Hoy!',
+                'cta-description': 'No pierdas la oportunidad de vivir una experiencia única en la montaña. Contacta con nosotros y comienza tu aventura en el esquí.',
+                'cta-button': 'Contactar Ahora',
+                'footer-contact-title': 'Contacto',
+                'footer-schedule-title': 'Horarios',
+                'footer-schedule-weekdays': 'Lunes a Viernes: 9:00 - 17:00',
+                'footer-schedule-weekends': 'Fines de Semana: 8:00 - 18:00',
+                'footer-social-title': 'Síguenos',
+                'footer-copyright': '© 2024 Magic Ski Club. Todos los derechos reservados.'
+            },
+            ca: {
+                'hero-title': 'Descobreix la Màgia',
+                'hero-subtitle': 'de l\'Esquí',
+                'hero-description': 'Aprèn a esquiar en un ambient divertit i segur amb instructors professionals a les millors pistes de la muntanya.',
+                'hero-reserve': 'Reservar Classes',
+                'hero-video': 'Veure Vídeo',
+                'about-title': 'Sobre Nosaltres',
+                'about-subtitle': 'Coneix més sobre Magic Ski Club',
+                'about-text-1': 'El Club Màgic Ski és un club lúdic d\'esquí on s\'ensenya als alumnes a gaudir de la muntanya amb respecte cap a la naturalesa i cap a les persones. Els valors com el respecte, la cooperació i el treball en equip són pilars fonamentals del nostre ensenyament.',
+                'about-text-2': 'El Club Màgic Ski ofereix classes d\'esquí per a nens i adolescents durant tota la temporada. El punt base del club és la zona de Planells, on es troba el Jardí de Neu, instal·lació idònia per als més petits que tot just comencen a esquiar. Els més grans, juntament amb el seu monitor que els acompanyarà tota la temporada, podran descobrir l\'estació aprenent i perfeccionant la tècnica.',
+                'benefits-title': 'Per què Triar-nos?',
+                'benefits-subtitle': 'Descobreix els avantatges d\'aprendre amb nosaltres',
+                'benefit-1-title': 'Instructors Professionals',
+                'benefit-1-desc': 'Els nostres instructors certificats tenen anys d\'experiència ensenyant esquí a estudiants de totes les edats i nivells.',
+                'benefit-2-title': 'Pistes Perfectes',
+                'benefit-2-desc': 'Accés a les millors pistes d\'esquí amb condicions òptimes per a l\'aprenentatge i la diversió.',
+                'benefit-3-title': 'Seguretat Garantida',
+                'benefit-3-desc': 'Prioritzem la seguretat amb equips d\'alta qualitat i protocols estrictes de seguretat en totes les nostres activitats.',
+                'benefit-4-title': 'Grups Reduïts',
+                'benefit-4-desc': 'Classes en grups petits per a una atenció personalitzada i un aprenentatge més efectiu.',
+                'benefit-5-title': 'Experiència Completa',
+                'benefit-5-desc': 'No només ensenyem tècnica, sinó que creem experiències memorables a la muntanya.',
+                'benefit-6-title': 'Preus Competitius',
+                'benefit-6-desc': 'Oferim paquets flexibles i preus accessibles perquè tothom pugui gaudir de l\'esquí.',
+                'gallery-title': 'Galeria',
+                'gallery-subtitle': 'Moments memorables a la muntanya',
+                'testimonials-title': 'Testimonis',
+                'testimonials-subtitle': 'El que diuen els nostres estudiants',
+                'testimonial-1-text': '"Experiència increïble! Els instructors són molt pacients i professionals. El meu fill va aprendre a esquiar en només una setmana."',
+                'testimonial-1-author': '- Maria González',
+                'testimonial-2-text': '"Les classes són súper divertides i segures. Definitivament recomano Magic Ski Club a totes les famílies."',
+                'testimonial-2-author': '- Carles Martí',
+                'testimonial-3-text': '"Perfecta organització i ambient familiar. Els meus fills estan emocionats per tornar la propera temporada."',
+                'testimonial-3-author': '- Anna Rodríguez',
+                'cta-title': 'Reserva la teva Classe Avui!',
+                'cta-description': 'No perdis l\'oportunitat de viure una experiència única a la muntanya. Contacta amb nosaltres i comença la teva aventura a l\'esquí.',
+                'cta-button': 'Contactar Ara',
+                'footer-contact-title': 'Contacte',
+                'footer-schedule-title': 'Horaris',
+                'footer-schedule-weekdays': 'Dilluns a Divendres: 9:00 - 17:00',
+                'footer-schedule-weekends': 'Caps de Setmana: 8:00 - 18:00',
+                'footer-social-title': 'Segueix-nos',
+                'footer-copyright': '© 2024 Magic Ski Club. Tots els drets reservats.'
+            },
+            en: {
+                'hero-title': 'Discover the Magic',
+                'hero-subtitle': 'of Skiing',
+                'hero-description': 'Learn to ski in a fun and safe environment with professional instructors on the best mountain slopes.',
+                'hero-reserve': 'Book Classes',
+                'hero-video': 'Watch Video',
+                'about-title': 'About Us',
+                'about-subtitle': 'Learn more about Magic Ski Club',
+                'about-text-1': 'Magic Ski Club is a recreational ski club where students learn to enjoy the mountain with respect for nature and people. Values such as respect, cooperation and teamwork are fundamental pillars of our teaching.',
+                'about-text-2': 'Magic Ski Club offers ski lessons for children and teenagers throughout the season. The club\'s base is in the Planells area, where the Snow Garden is located, an ideal facility for the little ones who are just starting to ski. The older ones, together with their instructor who will accompany them all season, will be able to discover the resort while learning and perfecting their technique.',
+                'benefits-title': 'Why Choose Us?',
+                'benefits-subtitle': 'Discover the advantages of learning with us',
+                'benefit-1-title': 'Professional Instructors',
+                'benefit-1-desc': 'Our certified instructors have years of experience teaching skiing to students of all ages and levels.',
+                'benefit-2-title': 'Perfect Slopes',
+                'benefit-2-desc': 'Access to the best ski slopes with optimal conditions for learning and fun.',
+                'benefit-3-title': 'Safety Guaranteed',
+                'benefit-3-desc': 'We prioritize safety with high-quality equipment and strict safety protocols in all our activities.',
+                'benefit-4-title': 'Small Groups',
+                'benefit-4-desc': 'Classes in small groups for personalized attention and more effective learning.',
+                'benefit-5-title': 'Complete Experience',
+                'benefit-5-desc': 'We don\'t just teach technique, we create memorable experiences in the mountains.',
+                'benefit-6-title': 'Competitive Prices',
+                'benefit-6-desc': 'We offer flexible packages and affordable prices so everyone can enjoy skiing.',
+                'gallery-title': 'Gallery',
+                'gallery-subtitle': 'Memorable moments in the mountains',
+                'testimonials-title': 'Testimonials',
+                'testimonials-subtitle': 'What our students say',
+                'testimonial-1-text': '"Amazing experience! The instructors are very patient and professional. My son learned to ski in just one week."',
+                'testimonial-1-author': '- Maria González',
+                'testimonial-2-text': '"The classes are super fun and safe. I definitely recommend Magic Ski Club to all families."',
+                'testimonial-2-author': '- Carlos Martín',
+                'testimonial-3-text': '"Perfect organization and family atmosphere. My children are excited to come back next season."',
+                'testimonial-3-author': '- Ana Rodríguez',
+                'cta-title': 'Book Your Class Today!',
+                'cta-description': 'Don\'t miss the opportunity to live a unique experience in the mountains. Contact us and start your skiing adventure.',
+                'cta-button': 'Contact Now',
+                'footer-contact-title': 'Contact',
+                'footer-schedule-title': 'Schedule',
+                'footer-schedule-weekdays': 'Monday to Friday: 9:00 - 17:00',
+                'footer-schedule-weekends': 'Weekends: 8:00 - 18:00',
+                'footer-social-title': 'Follow Us',
+                'footer-copyright': '© 2024 Magic Ski Club. All rights reserved.'
+            },
+            fr: {
+                'hero-title': 'Découvrez la Magie',
+                'hero-subtitle': 'du Ski',
+                'hero-description': 'Apprenez à skier dans un environnement amusant et sûr avec des instructeurs professionnels sur les meilleures pistes de montagne.',
+                'hero-reserve': 'Réserver Cours',
+                'hero-video': 'Voir Vidéo',
+                'about-title': 'À Propos',
+                'about-subtitle': 'En savoir plus sur Magic Ski Club',
+                'about-text-1': 'Le Club Màgic Ski est un club de ski récréatif où les élèves apprennent à profiter de la montagne dans le respect de la nature et des personnes. Des valeurs telles que le respect, la coopération et le travail d\'équipe sont les piliers fondamentaux de notre enseignement.',
+                'about-text-2': 'Le Club Màgic Ski propose des cours de ski pour enfants et adolescents pendant toute la saison. La base du club se trouve dans la zone de Planells, où se trouve le Jardin des Neiges, installation idéale pour les plus petits qui commencent tout juste à skier. Les plus grands, accompagnés de leur moniteur qui les accompagnera toute la saison, pourront découvrir la station en apprenant et perfectionnant leur technique.',
+                'benefits-title': 'Pourquoi Nous Choisir?',
+                'benefits-subtitle': 'Découvrez les avantages d\'apprendre avec nous',
+                'benefit-1-title': 'Instructeurs Professionnels',
+                'benefit-1-desc': 'Nos instructeurs certifiés ont des années d\'expérience dans l\'enseignement du ski à des étudiants de tous âges et niveaux.',
+                'benefit-2-title': 'Pistes Parfaites',
+                'benefit-2-desc': 'Accès aux meilleures pistes de ski avec des conditions optimales pour l\'apprentissage et le plaisir.',
+                'benefit-3-title': 'Sécurité Garantie',
+                'benefit-3-desc': 'Nous priorisons la sécurité avec des équipements de haute qualité et des protocoles de sécurité stricts dans toutes nos activités.',
+                'benefit-4-title': 'Petits Groupes',
+                'benefit-4-desc': 'Cours en petits groupes pour une attention personnalisée et un apprentissage plus efficace.',
+                'benefit-5-title': 'Expérience Complète',
+                'benefit-5-desc': 'Nous n\'enseignons pas seulement la technique, nous créons des expériences mémorables en montagne.',
+                'benefit-6-title': 'Prix Compétitifs',
+                'benefit-6-desc': 'Nous proposons des forfaits flexibles et des prix abordables pour que chacun puisse profiter du ski.',
+                'gallery-title': 'Galerie',
+                'gallery-subtitle': 'Moments mémorables en montagne',
+                'testimonials-title': 'Témoignages',
+                'testimonials-subtitle': 'Ce que disent nos étudiants',
+                'testimonial-1-text': '"Expérience incroyable! Les instructeurs sont très patients et professionnels. Mon fils a appris à skier en une semaine seulement."',
+                'testimonial-1-author': '- Maria González',
+                'testimonial-2-text': '"Les cours sont super amusants et sûrs. Je recommande définitivement Magic Ski Club à toutes les familles."',
+                'testimonial-2-author': '- Carlos Martín',
+                'testimonial-3-text': '"Organisation parfaite et ambiance familiale. Mes enfants sont excités de revenir la saison prochaine."',
+                'testimonial-3-author': '- Ana Rodríguez',
+                'cta-title': 'Réservez Votre Cours Aujourd\'hui!',
+                'cta-description': 'Ne manquez pas l\'opportunité de vivre une expérience unique en montagne. Contactez-nous et commencez votre aventure de ski.',
+                'cta-button': 'Contacter Maintenant',
+                'footer-contact-title': 'Contact',
+                'footer-schedule-title': 'Horaires',
+                'footer-schedule-weekdays': 'Lundi à Vendredi: 9:00 - 17:00',
+                'footer-schedule-weekends': 'Week-ends: 8:00 - 18:00',
+                'footer-social-title': 'Suivez-nous',
+                'footer-copyright': '© 2024 Magic Ski Club. Tous droits réservés.'
+            }
+        };
+
+        // Get browser language
+        function getBrowserLanguage() {
+            const lang = navigator.language || navigator.userLanguage;
+            const langCode = lang.split('-')[0];
+            return ['es', 'ca', 'en', 'fr'].includes(langCode) ? langCode : 'es';
+        }
+
+        // Current language
+        let currentLanguage = getBrowserLanguage();
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            
+            // Update all translatable elements
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Close dropdown
+            document.getElementById('language-dropdown').classList.remove('active');
+        }
+
+        // Toggle language dropdown
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('language-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('language-dropdown');
+            const button = document.querySelector('.language-btn');
+            
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial language
+            changeLanguage(currentLanguage);
+            
+            // Create snow particles
+            const snowContainer = document.getElementById('snow-particles');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snow-particle';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.top = Math.random() * 100 + '%';
+                snowflake.style.animationDelay = Math.random() * 3 + 's';
+                snowflake.style.animationDuration = (2 + Math.random() * 3) + 's';
+                snowContainer.appendChild(snowflake);
+            }
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Navbar background on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
