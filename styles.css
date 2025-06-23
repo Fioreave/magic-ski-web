@@ -1,3 +1,4 @@
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -565,13 +566,18 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
     margin-bottom: 1.5rem;
     transition: var(--transition);
 }
 
 .benefit-card:hover .benefit-icon {
     transform: scale(1.1);
+}
+
+.benefit-icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--white);
 }
 
 .benefit-title {
